@@ -1,0 +1,56 @@
+<div class="body">
+  <div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+						<table class="table">
+							<tbody>
+								<%= attachment_image_tag @user, :profile_image, :fill, 50, 50 %>
+								<tr>
+								   <th>name</th>　
+								   <th><%= @user.name %></th>
+								</tr>
+								<tr>
+									<th>introduction</th>
+									<th><%= @user.introduction %></th>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row">
+
+						    <%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>
+						</div>
+
+				<h2>New book</h2>
+				<%= form_for(@book) do |f| %>
+
+					 <h4>Title</h4>
+					 <%= f.text_field :title %>
+
+					 <h4>Opinion</h4>
+					 <%= f.text_area :body %>
+
+					 <%= f.submit "Create Book" , class: "col-xs-12 btn btn-info "%>
+			    <% end %>
+		</div>
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table">
+
+				<tbody>
+					<tr>
+						<th><%= attachment_image_tag @user, :profile_image,:fill, 25, 25%><%= link_to @user.name , user_path(@user) %></th>
+						<td><%= @books.title %></td>
+						<td><%= @books.body %></td>
+						<% if @books.user_id == current_user.id %>
+
+						 <td><%= link_to "Edit", edit_book_path , class: "col-xs-4 btn btn-success"%></td>
+						 <td><%= link_to "Destroy", book_path ,  method: :delete ,"data-confirm" => "本当に削除しますか？",class: "col-xs-4 btn btn-danger"%></td>
+						<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+  </div>
+</div>

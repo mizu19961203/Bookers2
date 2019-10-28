@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="low">
+		<div class="col-xs-3">
+			<% if @user.errors.any? %>
+                <p>errorです。</p>
+            <% end %>
+			<h2>User info</h2>
+				<%= form_for(@user) do |f| %>
+				<h4>name</h4>
+				<%= f.text_field :name %>
+				<h4>image</h4>
+			    <%= f.attachment_field :profile_image %>
+			    <h4>introduction</h4>
+			    <%= f.text_area :introduction %>
+			    <%= f.submit "Update User", class: " btn btn-link "%>
+
+				<% end %>
+		</div>
+	</div>
+</div>
